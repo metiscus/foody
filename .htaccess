@@ -1,0 +1,4 @@
+RewriteEngine ON
+RewriteBase /
+RewriteRule ^api/ api.php
+Options -Indexes
