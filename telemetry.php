@@ -1,5 +1,7 @@
 <?php
 	$mysqli = new mysqli("localhost", "telemetry", "35b3rVF2Gl", "foody_telemetry");
+	$mysqli->set_charset("UTF8");
+
 	//$result = $mysqli->query("SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL");
 	//$row = $result->fetch_assoc();
 	//echo htmlentities($row['_message']);
