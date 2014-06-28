@@ -10,19 +10,16 @@
 		$obj  = json_decode($json, true);
 		if( isset($obj) && isset($obj['api']) && validateApi($obj['api'], $_SERVER['REQUEST_TIME']) )
 		{
-			echo "1";
 			if( !isset($obj['data']) )
 			{
 				return false;
 			}
-			echo "2";
 
 			// process data points
 			return storeTransaction($obj['data']); 
 		}
 		else
 		{
-			echo "3";
 			return false;
 		}
 	}
@@ -35,7 +32,6 @@
 
 	function handleRequest()
 	{
-		echo $_SERVER['REQUEST_METHOD'];
 		if($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			return handlePost();
@@ -48,11 +44,7 @@
 		return 1;
 	}
 
-	if( !handleRequest() )
-	{
-		http_response_code(500);
-	}
-	
+
 	function validateApi ( $userApi, $timestamp )
 	{
 		global $gApiCheckEnabled, $gApiPrivate, $gApiWindow;
@@ -94,32 +86,13 @@
 			$stmt->execute();
 		}
 		$stmt->close();
-	}
-
-
-	//$result = $mysqli->query("SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL");
-	//$row = $result->fetch_assoc();
-	//echo htmlentities($row['_message']);
-
-	// parse the URI to get the parameters
-	// form is /telemetry/api/<apikey>/uid/<uid>/key/<key>/value/<value>
-	$argv = explode('/', $_SERVER['REQUEST_URI']);
-	$argc = count($argv);
 	
-	// make sure this is a telemetry api call
-	if( in_array( "telemetry", $argv ) == false )
-	{
-		exit(0);
+		return true;
 	}
 
-	if( $valueCount > 2 )
+	if( !handleRequest() )
 	{
+		header("HTTP/1.0 500 Internal Server Error");
 	}
-	
-	for($idx=2; $idx<$valueCount; ++$idx)
-	{
-			
-	}
-	echo $values;
 
 ?>
