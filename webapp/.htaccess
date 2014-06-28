@@ -1,4 +1,5 @@
 RewriteEngine ON
-RewriteBase /
-RewriteRule ^api/ api.php
+RewriteRule ^api/(.*)$ api.php/$1 [L]
+RewriteRule ^telemetry/(.*)$ telemetry.php/$1 [L]
+
 Options -Indexes
