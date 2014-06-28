@@ -72,34 +72,27 @@
 
 	function storeTransaction( $data )
 	{
-		echo "a";
 		$mysqli = new mysqli("localhost", "telemetry", "35b3rVF2Gl", "foody_telemetry");
-		echo "b";
 		$mysqli->set_charset("UTF8");
-		echo "c";
 		
 		if(!isset($data['uid']))
 		{
 			return false;
 		}
-		echo "d";
 
 		// insert the transaction record
 		$stmt = $mysqli->prepare("INSERT INTO tel_trans(uid) VALUES( ? )");
-		echo $stmt->error;
-		$stmt->bind_param("s", $data['uid']);
-		echo $stmt->error;
-		$stmt->execute();
-		$stmt->close();
-		echo $stmt->error;
-
-
-		echo "b";
-		$stmt = $mysqli->prepare("SELECT FROM tel_trans where uid=?");
 		$stmt->bind_param("s", $data['uid']);
 		$stmt->execute();
-		$result = $stmt->get_result();
-		print_r($result->fetch_field());
+		$transId = $stmt->insert_id;
+
+		// insert the transaction data
+		$stmt = $mysqli->prepare("INSERT INTO tel_trans_data(trans, tkey, tvalue) VALUES( ?, ?, ? )");
+		foreach( $data as $key => $value )
+		{
+			$stmt->bind_param("iis", $transId, $key, $value);
+			$stmt->execute();
+		}
 		$stmt->close();
 	}
 
