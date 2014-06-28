@@ -1,0 +1,1 @@
+factor a database class out of the stuff in telemetry.php for use all over.
