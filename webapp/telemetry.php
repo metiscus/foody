@@ -1,5 +1,5 @@
 <?php
-	require('Slim/Slim.php');
+	require_once('Slim/Slim.php');
 	require_once('config.php');
 	require_once('api.php');
 	

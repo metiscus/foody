@@ -16,5 +16,6 @@
     
     /* run the slim app */
     $app->run();
-    
+
+	echo "derp";    
 ?>
