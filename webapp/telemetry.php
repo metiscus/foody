@@ -20,18 +20,18 @@
 		$request = $app->request();
 		$response = $app->response();
 		$body = $request->getBody();
-		$json = json_decode($body);
-    
-        $status = 400;
-    
-		if( isset($json) && isset($json['api']) && api_validate_userkey($obj['api'], $_SERVER['REQUEST_TIME']) )
+		$json = json_decode($body, true);
+
+		// default the return status to a bad request    
+	    $status = 400;
+
+		if( isset($json) && isset($json['api']) && api_validate_userkey($json['api'], $_SERVER['REQUEST_TIME']) )
 		{
 			if( isset($json['data']) )
 			{
-				$status = telemetry_store_transaction($obj['data']);
+				$status = telemetry_store_transaction($json['data']);
 			}
 		}
-        echo $status;
         $response->setStatus($status);
 	}
 
@@ -40,7 +40,7 @@
 		$mysqli = new mysqli("localhost", "telemetry", "35b3rVF2Gl", "foody_telemetry");
 		$mysqli->set_charset("UTF8");
 		
-		if(isset($data['uid']) && isset($data['data']))
+		if(isset($data['uid']) && count($data) > 1)
 		{
     		// insert the transaction record
     		$stmt = $mysqli->prepare("INSERT INTO tel_trans(uid) VALUES( ? )");
@@ -50,10 +50,13 @@
 
     		// insert the transaction data
     		$stmt = $mysqli->prepare("INSERT INTO tel_trans_data(trans, tkey, tvalue) VALUES( ?, ?, ? )");
-    		foreach( $data['data'] as $key => $value )
+    		foreach( $data as $key => $value )
     		{
-    			$stmt->bind_param("iis", $transId, $key, $value);
-    			$stmt->execute();
+    			if( $key != 'uid' )
+				{
+					$stmt->bind_param("iis", $transId, $key, $value);
+					$stmt->execute();
+				}
     		}
     		$stmt->close();
             

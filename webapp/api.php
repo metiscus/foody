@@ -10,17 +10,19 @@
         global $gApiPrivate;
         global $gApiWindow;
         // end: externals from config
-
+		echo "a";
 		// short circuit if we aren't checking	
 		if( $gApiCheckEnabled == false )
 		{
+			echo "b";
 			return true;
 		}
 
+		echo "c";
 		// check the api key
 		$timestamp      -= $timestamp % $gApiWindow;
 		$computedApiKey  = sha1( $gApiPrivate . (string)$timestamp );
-	
+		echo "d";
 		return $userApi !== $computedApiKey;
 	}
 ?>
