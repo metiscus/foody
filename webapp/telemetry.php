@@ -14,7 +14,7 @@
         }
     */
     
-	function telemetry_handle_post($jsonData)
+	function telemetry_handle_post()
 	{
 		$app = \Slim\Slim::getInstance();
 		$request = $app->request();
