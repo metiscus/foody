@@ -15,7 +15,5 @@
     $app->post('/telemetry', function() { telemetry_handle_post(); });
     
     /* run the slim app */
-    $app->run();
-
-	echo "derp";    
+    $app->run(); 
 ?>
