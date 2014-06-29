@@ -5,7 +5,7 @@
     \Slim\Slim::registerAutoloader();
     
     // create the slim router
-    $app = new Slim(
+    $app = new \Slim\Slim(
         array(
             'debug' => true
         )
