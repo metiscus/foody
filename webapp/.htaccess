@@ -1,5 +1,7 @@
 RewriteEngine ON
-RewriteRule ^api/(.*)$ api.php/$1 [L]
-RewriteRule ^telemetry/(.*)$ telemetry.php/$1 [L]
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
 
 Options -Indexes

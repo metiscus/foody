@@ -1,98 +1,64 @@
 <?php
-	$gApiCheckEnabled = false;
-	$gApiPrivate      = 'DerpS@uC3';
-	$gApiWindow       = 120;
+	require('Slim/Slim.php');
+	require_once('config.php');
+	require_once('api.php');
 	
-	function handlePost()
+    /*  telemetry requests are in json format from POST in the following structure
+        {
+            'api' : sha1(private key + timestamp rounded to nearest 2 minutes),
+            'uid' : sha1(phone hardware id),
+            data {
+                "key" : "value pairs",
+                "key2" : "keys are integers and values are some data"
+            }
+        }
+    */
+    
+	function telemetry_handle_post($jsonData)
 	{
-		// get the request
-		$json = file_get_contents('php://input');
-		$obj  = json_decode($json, true);
-		if( isset($obj) && isset($obj['api']) && validateApi($obj['api'], $_SERVER['REQUEST_TIME']) )
+		$app = \Slim\Slim::getInstance();
+		$request = $app->request();
+		$response = $app->response();
+		$body = $request->getBody();
+		$json = json_decode($body);
+    
+        $status = 400;
+    
+		if( isset($json) && isset($json['api']) && api_validate_userkey($obj['api'], $_SERVER['REQUEST_TIME']) )
 		{
-			if( !isset($obj['data']) )
+			if( isset($json['data']) )
 			{
-				return false;
+				$status = telemetry_store_transaction($obj['data']);
 			}
-
-			// process data points
-			return storeTransaction($obj['data']); 
 		}
-		else
-		{
-			return false;
-		}
+        
+        $response->setStatus($status);
 	}
 
-	function handleGet()
-	{
-
-	
-	}
-
-	function handleRequest()
-	{
-		if($_SERVER['REQUEST_METHOD'] === 'POST')
-		{
-			return handlePost();
-		}
-		else if($_SERVER['REQUEST_METHOD'] === 'GET')
-		{
-			return handleGet();
-		}
-
-		return 1;
-	}
-
-
-	function validateApi ( $userApi, $timestamp )
-	{
-		global $gApiCheckEnabled, $gApiPrivate, $gApiWindow;
-
-		// short circuit if we aren't checking	
-		if( $gApiCheckEnabled == false )
-		{
-			return true;
-		}
-
-		// check the api key
-		$timestamp      -= $timestamp % $gApiWindow;
-		$computedApiKey  = sha1( $gApiPrivate . (string)$timestamp );
-	
-		return $userApi !== $computedApiKey;
-	}
-
-	function storeTransaction( $data )
+	function telemetry_store_transaction( $data )
 	{
 		$mysqli = new mysqli("localhost", "telemetry", "35b3rVF2Gl", "foody_telemetry");
 		$mysqli->set_charset("UTF8");
 		
-		if(!isset($data['uid']))
+		if(isset($data['uid']) && isset($data['data']))
 		{
-			return false;
-		}
+    		// insert the transaction record
+    		$stmt = $mysqli->prepare("INSERT INTO tel_trans(uid) VALUES( ? )");
+    		$stmt->bind_param("s", $data['uid']);
+    		$stmt->execute();
+    		$transId = $stmt->insert_id;
 
-		// insert the transaction record
-		$stmt = $mysqli->prepare("INSERT INTO tel_trans(uid) VALUES( ? )");
-		$stmt->bind_param("s", $data['uid']);
-		$stmt->execute();
-		$transId = $stmt->insert_id;
-
-		// insert the transaction data
-		$stmt = $mysqli->prepare("INSERT INTO tel_trans_data(trans, tkey, tvalue) VALUES( ?, ?, ? )");
-		foreach( $data as $key => $value )
-		{
-			$stmt->bind_param("iis", $transId, $key, $value);
-			$stmt->execute();
-		}
-		$stmt->close();
-	
-		return true;
+    		// insert the transaction data
+    		$stmt = $mysqli->prepare("INSERT INTO tel_trans_data(trans, tkey, tvalue) VALUES( ?, ?, ? )");
+    		foreach( $data['data'] as $key => $value )
+    		{
+    			$stmt->bind_param("iis", $transId, $key, $value);
+    			$stmt->execute();
+    		}
+    		$stmt->close();
+            
+            return 200;
+        }	
+		return 400;
 	}
-
-	if( !handleRequest() )
-	{
-		header("HTTP/1.0 500 Internal Server Error");
-	}
-
 ?>
