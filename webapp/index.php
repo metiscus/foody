@@ -12,7 +12,7 @@
     );
     
     /* telemetry functions */
-    $app->post('/telemetry', telemetry_handle_post);
+    $app->post('/telemetry', function($json) { telemetry_handle_post($json); });
     
     /* run the slim app */
     $app->run();
