@@ -5,18 +5,17 @@ use foody_data;
 
 create table fdy_food_categories 
 (
-	id int not null AUTO_INCREMENT,
-	desc varchar(255) not null,
-	int_desc varchar(255) not null,
-	primary key(id)
+	id int not null primary key AUTO_INCREMENT,
+	cat_desc varchar(255) not null,
+	int_cat_desc varchar(255) not null
 ) engine=innodb;
 
 create table fdy_food_items
 (
-	id int not null AUTO_INCREMENT,
+	id int not null primary key AUTO_INCREMENT,
 	category int not null,
-	desc varchar(255) not null,
-	int_desc varchar(255) not null,
+	item_desc varchar(255) not null,
+	int_item_descc varchar(255) not null,
 	
 	foreign key(category)
 		references fdy_food_categories(id)
@@ -25,17 +24,17 @@ create table fdy_food_items
 
 create table fdy_regions
 (
-	id int not null AUTO_INCREMENT,
-	desc varchar(255) not null,
-	int_desc varchar(255) not null
+	id int not null primary key AUTO_INCREMENT,
+	reg_desc varchar(255) not null,
+	int_reg_descc varchar(255) not null
 ) engine=innodb;
 
 create table fdy_state_to_region
 (
-	state char(2) not null,
+	state_abbr char(2) not null,
 	region int not null,
 
-	primary key(state),
+	primary key(state_abbr),
 
 	foreign key(region)
 		references fdy_regions(id)
@@ -44,17 +43,17 @@ create table fdy_state_to_region
 
 create table fdy_chains
 (
-	id int not null AUTO_INCREMENT,
-	desc varchar(255) not null,
-	int_desc varchar(255) not null,
+	id int not null primary key AUTO_INCREMENT,
+	chain_desc varchar(255) not null,
+	int_chain_desc varchar(255) not null
 ) engine=innodb;
 
 create table fdy_locations
 (
-	id int not null AUTO_INCREMENT,
+	id int not null primary key AUTO_INCREMENT,
     chain int not null,
-	desc varchar(255) not null,
-	int_desc varchar(255) not null,
+	loc_desc varchar(255) not null,
+	int_loc_desc varchar(255) not null,
 	lat double precision not null,
 	lon double precision not null,
 	foreign key(chain)
@@ -64,25 +63,25 @@ create table fdy_locations
 
 create table fdy_users
 (
-	id int not null AUTO_INCREMENT,
+	id int not null primary key AUTO_INCREMENT,
 	uid char(40) not null,
-	banned boolean not null default 1,
+	banned boolean not null default 1
 ) engine=innodb;
 
 create table fdy_price_report
 (
-	id int not null AUTO_INCREMENT,
+	id int not null primary key AUTO_INCREMENT,
 	location int not null,
 	item int not null,
-	user int not null,
+	userid int not null,
 	
-	foreign key(user)
+	foreign key(userid)
 		references fdy_users(id)
-		on delete cascade
+		on delete cascade,
 
 	foreign key(location)
 		references fdy_locations(id)
-		on delete cascade
+		on delete cascade,
 
 	foreign key(item)
 		references fdy_food_items(id)
