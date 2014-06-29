@@ -31,7 +31,7 @@
 				$status = telemetry_store_transaction($obj['data']);
 			}
 		}
-        
+        echo $status;
         $response->setStatus($status);
 	}
 
