@@ -15,7 +15,7 @@ create table fdy_food_items
 	id int not null primary key AUTO_INCREMENT,
 	category int not null,
 	item_desc varchar(255) not null,
-	int_item_descc varchar(255) not null,
+	int_item_desc varchar(255) not null,
 	
 	foreign key(category)
 		references fdy_food_categories(id)
