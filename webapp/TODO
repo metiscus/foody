@@ -1,1 +1,3 @@
 factor a database class out of the stuff in telemetry.php for use all over.
+
+write cron task to update data once a month from bls sources
