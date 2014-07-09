@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:10 GMT
+Set-Cookie: JSESSIONID=2C42832ECA6A0CC12E0C5846376089D2.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 660
+
+{"status":"REQUEST_SUCCEEDED","responseTime":46,"message":["No Data Available for Series APU0100703512 Year: 1992","No Data Available for Series APU0100703512 Year: 1993"],"Results":{
+"series":
+[{"seriesID":"APU0100703512","data":[{"year":"1994","period":"M07","periodName":"July","value":"3.295","footnotes":[{}]},{"year":"1994","period":"M06","periodName":"June","value":"3.211","footnotes":[{}]},{"year":"1994","period":"M05","periodName":"May","value":"3.379","footnotes":[{}]},{"year":"1994","period":"M03","periodName":"March","value":"3.181","footnotes":[{}]},{"year":"1994","period":"M02","periodName":"February","value":"3.413","footnotes":[{}]}]}]
+}}

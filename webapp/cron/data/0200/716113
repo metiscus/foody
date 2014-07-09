@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:18 GMT
+Set-Cookie: JSESSIONID=ACCAC5691E56722D080DF87A62C59265.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 744
+
+{"status":"REQUEST_SUCCEEDED","responseTime":24,"message":["No Data Available for Series APU0200716113 Year: 1978","No Data Available for Series APU0200716113 Year: 1979"],"Results":{
+"series":
+[{"seriesID":"APU0200716113","data":[{"year":"1980","period":"M07","periodName":"July","value":"0.854","footnotes":[{}]},{"year":"1980","period":"M06","periodName":"June","value":"0.872","footnotes":[{}]},{"year":"1980","period":"M05","periodName":"May","value":"0.863","footnotes":[{}]},{"year":"1980","period":"M04","periodName":"April","value":"0.844","footnotes":[{}]},{"year":"1980","period":"M03","periodName":"March","value":"0.862","footnotes":[{}]},{"year":"1980","period":"M01","periodName":"January","value":"0.863","footnotes":[{}]}]}]
+}}

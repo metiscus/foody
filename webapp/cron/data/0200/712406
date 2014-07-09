@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:17 GMT
+Set-Cookie: JSESSIONID=1492F24934B9D3C79573F103399E1CDD.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 1850
+
+{"status":"REQUEST_SUCCEEDED","responseTime":19,"message":[],"Results":{
+"series":
+[{"seriesID":"APU0200712406","data":[{"year":"2013","period":"M05","periodName":"May","value":"2.364","footnotes":[{}]},{"year":"2013","period":"M04","periodName":"April","value":"2.264","footnotes":[{}]},{"year":"2013","period":"M03","periodName":"March","value":"2.095","footnotes":[{}]},{"year":"2013","period":"M02","periodName":"February","value":"2.042","footnotes":[{}]},{"year":"2013","period":"M01","periodName":"January","value":"2.125","footnotes":[{}]},{"year":"2012","period":"M12","periodName":"December","value":"2.280","footnotes":[{}]},{"year":"2012","period":"M11","periodName":"November","value":"2.093","footnotes":[{}]},{"year":"2012","period":"M10","periodName":"October","value":"2.318","footnotes":[{}]},{"year":"2012","period":"M09","periodName":"September","value":"2.387","footnotes":[{}]},{"year":"2012","period":"M08","periodName":"August","value":"2.087","footnotes":[{}]},{"year":"2012","period":"M07","periodName":"July","value":"2.216","footnotes":[{}]},{"year":"2012","period":"M06","periodName":"June","value":"2.402","footnotes":[{}]},{"year":"2012","period":"M05","periodName":"May","value":"2.317","footnotes":[{}]},{"year":"2012","period":"M04","periodName":"April","value":"2.160","footnotes":[{}]},{"year":"2012","period":"M03","periodName":"March","value":"2.111","footnotes":[{}]},{"year":"2012","period":"M02","periodName":"February","value":"2.075","footnotes":[{}]},{"year":"2012","period":"M01","periodName":"January","value":"2.300","footnotes":[{}]},{"year":"2011","period":"M12","periodName":"December","value":"2.393","footnotes":[{}]},{"year":"2011","period":"M11","periodName":"November","value":"2.272","footnotes":[{}]},{"year":"2011","period":"M10","periodName":"October","value":"2.276","footnotes":[{}]}]}]
+}}

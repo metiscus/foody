@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:12 GMT
+Set-Cookie: JSESSIONID=E6F2ED42132215029F1EB97176615A07.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 170
+
+{"status":"REQUEST_SUCCEEDED","responseTime":106,"message":["Series not exist for Series APU0100712411"],"Results":{
+"series":
+[{"seriesID":"APU0100712411","data":[]}]
+}}

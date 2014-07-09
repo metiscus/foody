@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:13 GMT
+Set-Cookie: JSESSIONID=ADFB046EEB326A007D7B29DBC51E5517.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 1127
+
+{"status":"REQUEST_SUCCEEDED","responseTime":21,"message":["No Data Available for Series APU0100713111 Year: 2010"],"Results":{
+"series":
+[{"seriesID":"APU0100713111","data":[{"year":"2012","period":"M09","periodName":"September","value":"2.975","footnotes":[{}]},{"year":"2012","period":"M08","periodName":"August","value":"2.971","footnotes":[{}]},{"year":"2012","period":"M07","periodName":"July","value":"2.950","footnotes":[{}]},{"year":"2012","period":"M06","periodName":"June","value":"2.971","footnotes":[{}]},{"year":"2012","period":"M05","periodName":"May","value":"2.977","footnotes":[{}]},{"year":"2012","period":"M04","periodName":"April","value":"2.948","footnotes":[{}]},{"year":"2012","period":"M03","periodName":"March","value":"2.961","footnotes":[{}]},{"year":"2012","period":"M02","periodName":"February","value":"2.961","footnotes":[{}]},{"year":"2012","period":"M01","periodName":"January","value":"2.893","footnotes":[{}]},{"year":"2011","period":"M12","periodName":"December","value":"2.945","footnotes":[{}]},{"year":"2011","period":"M11","periodName":"November","value":"2.946","footnotes":[{}]}]}]
+}}

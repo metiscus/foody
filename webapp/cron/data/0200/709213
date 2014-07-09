@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:16 GMT
+Set-Cookie: JSESSIONID=1B747E00D7A20C99ABF98FB5B926DB1E.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 703
+
+{"status":"REQUEST_SUCCEEDED","responseTime":21,"message":["No Data Available for Series APU0200709213 Year: 2001"],"Results":{
+"series":
+[{"seriesID":"APU0200709213","data":[{"year":"2003","period":"M03","periodName":"March","value":"2.403","footnotes":[{}]},{"year":"2003","period":"M02","periodName":"February","value":"2.395","footnotes":[{}]},{"year":"2003","period":"M01","periodName":"January","value":"2.395","footnotes":[{}]},{"year":"2002","period":"M12","periodName":"December","value":"2.381","footnotes":[{}]},{"year":"2002","period":"M11","periodName":"November","value":"2.442","footnotes":[{}]},{"year":"2002","period":"M10","periodName":"October","value":"2.407","footnotes":[{}]}]}]
+}}

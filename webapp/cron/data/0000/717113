@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:09 GMT
+Set-Cookie: JSESSIONID=45685ED2805FCCE93D0B8C54ADCAE3B7.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 961
+
+{"status":"REQUEST_SUCCEEDED","responseTime":20,"message":["No Data Available for Series APU0000717113 Year: 1990"],"Results":{
+"series":
+[{"seriesID":"APU0000717113","data":[{"year":"1992","period":"M02","periodName":"February","value":"0.465","footnotes":[{}]},{"year":"1992","period":"M01","periodName":"January","value":"0.458","footnotes":[{}]},{"year":"1991","period":"M12","periodName":"December","value":"0.438","footnotes":[{}]},{"year":"1991","period":"M11","periodName":"November","value":"0.441","footnotes":[{}]},{"year":"1991","period":"M10","periodName":"October","value":"0.462","footnotes":[{}]},{"year":"1991","period":"M09","periodName":"September","value":"0.430","footnotes":[{}]},{"year":"1991","period":"M08","periodName":"August","value":"0.430","footnotes":[{}]},{"year":"1991","period":"M07","periodName":"July","value":"0.413","footnotes":[{}]},{"year":"1991","period":"M06","periodName":"June","value":"0.449","footnotes":[{}]}]}]
+}}

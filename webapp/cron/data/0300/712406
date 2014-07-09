@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:22 GMT
+Set-Cookie: JSESSIONID=928B7FD9F1AF9AAE34918DE36AF6CD6E.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 323
+
+{"status":"REQUEST_SUCCEEDED","responseTime":22,"message":["No Data Available for Series APU0300712406 Year: 2010","No Data Available for Series APU0300712406 Year: 2011"],"Results":{
+"series":
+[{"seriesID":"APU0300712406","data":[{"year":"2012","period":"M10","periodName":"October","value":"2.473","footnotes":[{}]}]}]
+}}

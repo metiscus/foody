@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:16 GMT
+Set-Cookie: JSESSIONID=F4FF8C33C1181ACCDC69E13A9FE1A0BF.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 651
+
+{"status":"REQUEST_SUCCEEDED","responseTime":19,"message":[],"Results":{
+"series":
+[{"seriesID":"APU0200711416","data":[{"year":"1986","period":"M12","periodName":"December","value":"0.882","footnotes":[{}]},{"year":"1986","period":"M01","periodName":"January","value":"0.882","footnotes":[{}]},{"year":"1985","period":"M12","periodName":"December","value":"0.815","footnotes":[{}]},{"year":"1985","period":"M11","periodName":"November","value":"0.829","footnotes":[{}]},{"year":"1985","period":"M01","periodName":"January","value":"1.066","footnotes":[{}]},{"year":"1984","period":"M12","periodName":"December","value":"0.963","footnotes":[{}]}]}]
+}}

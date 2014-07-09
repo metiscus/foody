@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:15 GMT
+Set-Cookie: JSESSIONID=799F40B86E2EDB029D31A168C691F518.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 354
+
+{"status":"REQUEST_SUCCEEDED","responseTime":25,"message":["No Data Available for Series APU0200703512 Year: 2006"],"Results":{
+"series":
+[{"seriesID":"APU0200703512","data":[{"year":"2008","period":"M10","periodName":"October","value":"4.908","footnotes":[{}]},{"year":"2007","period":"M10","periodName":"October","value":"4.256","footnotes":[{}]}]}]
+}}

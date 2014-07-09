@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:08 GMT
+Set-Cookie: JSESSIONID=0A03857D796AAC230EA989E6FDFD40A3.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 616
+
+{"status":"REQUEST_SUCCEEDED","responseTime":21,"message":["No Data Available for Series APU0000712403 Year: 2012"],"Results":{
+"series":
+[{"seriesID":"APU0000712403","data":[{"year":"2014","period":"M03","periodName":"March","value":"0.762","footnotes":[{}]},{"year":"2014","period":"M02","periodName":"February","value":"0.757","footnotes":[{}]},{"year":"2014","period":"M01","periodName":"January","value":"0.757","footnotes":[{}]},{"year":"2013","period":"M12","periodName":"December","value":"0.738","footnotes":[{}]},{"year":"2013","period":"M11","periodName":"November","value":"0.766","footnotes":[{}]}]}]
+}}

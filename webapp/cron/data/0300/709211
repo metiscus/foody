@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:20 GMT
+Set-Cookie: JSESSIONID=C2E5FE8FDC4286D97CD9F3754826773C.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 609
+
+{"status":"REQUEST_SUCCEEDED","responseTime":20,"message":["No Data Available for Series APU0300709211 Year: 1984"],"Results":{
+"series":
+[{"seriesID":"APU0300709211","data":[{"year":"1986","period":"M05","periodName":"May","value":"1.200","footnotes":[{}]},{"year":"1986","period":"M04","periodName":"April","value":"1.192","footnotes":[{}]},{"year":"1986","period":"M03","periodName":"March","value":"1.197","footnotes":[{}]},{"year":"1986","period":"M02","periodName":"February","value":"1.174","footnotes":[{}]},{"year":"1985","period":"M11","periodName":"November","value":"1.171","footnotes":[{}]}]}]
+}}

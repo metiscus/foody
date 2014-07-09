@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Wed, 09 Jul 2014 21:18:07 GMT
+Set-Cookie: JSESSIONID=3838B8A6FA40BA7E9AF42E27498ED2E2.tc_instance8; Path=/publicAPI
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 826
+
+{"status":"REQUEST_SUCCEEDED","responseTime":18,"message":[],"Results":{
+"series":
+[{"seriesID":"APU0000711416","data":[{"year":"1987","period":"M12","periodName":"December","value":"1.063","footnotes":[{}]},{"year":"1987","period":"M11","periodName":"November","value":"0.975","footnotes":[{}]},{"year":"1987","period":"M01","periodName":"January","value":"0.895","footnotes":[{}]},{"year":"1986","period":"M12","periodName":"December","value":"0.861","footnotes":[{}]},{"year":"1986","period":"M11","periodName":"November","value":"0.923","footnotes":[{}]},{"year":"1986","period":"M01","periodName":"January","value":"0.891","footnotes":[{}]},{"year":"1985","period":"M12","periodName":"December","value":"0.872","footnotes":[{}]},{"year":"1985","period":"M01","periodName":"January","value":"1.036","footnotes":[{}]}]}]
+}}
