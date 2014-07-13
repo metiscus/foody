@@ -1,4 +1,8 @@
 <?php
+	/*
+	 telemetry.php - script to handle telemetry from apps
+	 Michael A Bosse' (metiscus@gmail.com)
+	*/
 	require_once('Slim/Slim.php');
 	require_once('config.php');
 	require_once('api.php');
@@ -13,55 +17,62 @@
             }
         }
     */
-    
-	function telemetry_handle_post()
+	class Telemetry
 	{
-		$app = \Slim\Slim::getInstance();
-		$request = $app->request();
-		$response = $app->response();
-		$body = $request->getBody();
-		$json = json_decode($body, true);
-
-		// default the return status to a bad request    
-	    $status = 400;
-
-		if( isset($json) && isset($json['api']) && api_validate_userkey($json['api'], $_SERVER['REQUEST_TIME']) )
-		{
-			if( isset($json['data']) )
-			{
-				$status = telemetry_store_transaction($json['data']);
-			}
-		}
-        $response->setStatus($status);
-	}
-
-	function telemetry_store_transaction( $data )
-	{
-		$mysqli = new mysqli("localhost", "telemetry", "35b3rVF2Gl", "foody_telemetry");
-		$mysqli->set_charset("UTF8");
+		private $hostname = "localhost";
+		private $username = "telemetry";
+		private $password = "35b3rVF2Gl";
+		private $schema   = "foody_telemetry";
 		
-		if(isset($data['uid']) && count($data) > 1)
+		public function handle_post()
 		{
-    		// insert the transaction record
-    		$stmt = $mysqli->prepare("INSERT INTO tel_trans(uid) VALUES( ? )");
-    		$stmt->bind_param("s", $data['uid']);
-    		$stmt->execute();
-    		$transId = $stmt->insert_id;
-
-    		// insert the transaction data
-    		$stmt = $mysqli->prepare("INSERT INTO tel_trans_data(trans, tkey, tvalue) VALUES( ?, ?, ? )");
-    		foreach( $data as $key => $value )
-    		{
-    			if( $key != 'uid' )
+			$app = \Slim\Slim::getInstance();
+			$request = $app->request();
+			$response = $app->response();
+			$body = $request->getBody();
+			$json = json_decode($body, true);
+	
+			// default the return status to a bad request    
+			$status = 400;
+			$api    = new Api(Config.foodyApiPrivate, Config.foodyApiWindow);
+			if( isset($json) && isset($json['api']) && $api.validate_key( $json['api'], $_SERVER['REQUEST_TIME']) )
+			{
+				if( isset($json['data']) )
 				{
-					$stmt->bind_param("iis", $transId, $key, $value);
-					$stmt->execute();
+					$status = store_transaction($json['data']);
 				}
-    		}
-    		$stmt->close();
-            
-            return 200;
-        }	
-		return 400;
-	}
+			}
+			$response->setStatus($status);
+		}
+		
+		private function store_transaction( $data )
+		{
+			$mysqli = new mysqli($hostname, $username, $password, $schema);
+			$mysqli->set_charset("UTF8");
+		
+			if(isset($data['uid']) && count($data) > 1)
+			{
+				// insert the transaction record
+				$stmt = $mysqli->prepare("INSERT INTO tel_trans(uid) VALUES( ? )");
+				$stmt->bind_param("s", $data['uid']);
+				$stmt->execute();
+				$transId = $stmt->insert_id;
+	
+				// insert the transaction data
+				$stmt = $mysqli->prepare("INSERT INTO tel_trans_data(trans, tkey, tvalue) VALUES( ?, ?, ? )");
+				foreach( $data as $key => $value )
+				{
+					if( $key != 'uid' )
+					{
+						$stmt->bind_param("iis", $transId, $key, $value);
+						$stmt->execute();
+					}
+				}
+				$stmt->close();
+			    
+			    return 200;
+			}	
+			return 400;
+		}
+	};
 ?>

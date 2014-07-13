@@ -1,41 +1,40 @@
 <?php
-/*
- bls_cron.php - script to fetch price information from the bls public API
- Michael A Bosse' (metiscus@gmail.com)
-*/
-
-// region codes
-$regions = array("0000", "0100", "0200", "0300", "0400");
-
-// read the target file and parse the csv
-$target_ids = array_map('str_getcsv', file('target.csv'));
-
-// 
-$bls_url = "http://api.bls.gov/publicAPI/v1/timeseries/data/APU";
-
-// open the database handle
-$mysqli = new mysqli("localhost", "foody", "hGNhpbLKPFf8", "foody_data");
-if(!isset($mysqli))
-{
-	echo "Database error. Check database info.\n";
-	exit(1);
-}
-$mysqli->set_charset("UTF8");
-
-$errorCount = 0;
-
-$regionCounter = 0;
-
-// for each region, get the data
-foreach($regions as $region)
-{
-	echo "Working on region number: $region\n";
-    ++$regionCounter;
+	/*
+	 bls_cron.php - script to fetch price information from the bls public API
+	 Michael A Bosse' (metiscus@gmail.com)
+	*/
 	
-	// get the items
-	foreach($target_ids as $target_id)
+	// region codes
+	$regions = array("0000", "0100", "0200", "0300", "0400");
+	
+	// read the target file and parse the csv
+	$target_ids = array_map('str_getcsv', file('target.csv'));
+	
+	// 
+	$bls_url = "http://api.bls.gov/publicAPI/v1/timeseries/data/APU";
+	
+	// open the database handle
+	$mysqli = new mysqli("localhost", "foody", "hGNhpbLKPFf8", "foody_data");
+	if(!isset($mysqli))
 	{
-		try {
+		echo "Database error. Check database info.\n";
+		exit(1);
+	}
+	$mysqli->set_charset("UTF8");
+	
+	$errorCount = 0;
+	
+	$regionCounter = 0;
+	
+	// for each region, get the data
+	foreach($regions as $region)
+	{
+		echo "Working on region number: $region\n";
+		++$regionCounter;
+		
+		// get the items
+		foreach($target_ids as $target_id)
+		{
 			$request = $bls_url . $region . $target_id[0];
 			$response = http_get( $request );
 			
@@ -89,15 +88,6 @@ foreach($regions as $region)
 				$stmt->execute();
 			}
 		}
-		catch( Exception $e )
-		{
-			print("Exception fetching data: $response\n");
-			//print("Json: $json\n");
-			continue;
-		}
-		
 	}
-}
 
-exit( $errorCount );
 ?>
