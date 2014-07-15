@@ -34,12 +34,12 @@
 	
 			// default the return status to a bad request    
 			$status = 400;
-			$api    = new Api(Config.foodyApiPrivate, Config.foodyApiWindow);
-			if( isset($json) && isset($json['api']) && $api.validate_key( $json['api'], $_SERVER['REQUEST_TIME']) )
+			$api    = new Api(Config::$foodyApiPrivate, Config::$foodyApiWindow);
+			if( isset($json) && isset($json['api']) && $api->validate_key( $json['api'], $_SERVER['REQUEST_TIME']) )
 			{
 				if( isset($json['data']) )
 				{
-					$status = store_transaction($json['data']);
+					$status = $this->store_transaction($json['data']);
 				}
 			}
 			$response->setStatus($status);
@@ -47,7 +47,7 @@
 		
 		private function store_transaction( $data )
 		{
-			$mysqli = new mysqli($hostname, $username, $password, $schema);
+			$mysqli = new mysqli($this->hostname, $this->username, $this->password, $this->schema);
 			$mysqli->set_charset("UTF8");
 		
 			if(isset($data['uid']) && count($data) > 1)

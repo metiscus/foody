@@ -6,28 +6,28 @@
 		private $timeWindow;
 		
 		public function __construct($privKey, $time) {
-			$privateKey = $privKey;
-			$timeWindow = $time;
+			$this->privateKey = $privKey;
+			$this->timeWindow = $time;
 		}
 		
 		public function validate_key( $string, $time )
 		{
 			// short circuit if we aren't checking	
-			if( $checkEnabled == false )
+			if( Api::$checkEnabled === false )
 			{
 				return true;
 			}
 
 			// check the api key
-			$timestamp      -= $time % $timeWindow;
-			$computedApiKey  = sha1( $privateKey . (string)$timestamp );
+			$timestamp       = $time - $time % $this->timeWindow;
+			$computedApiKey  = sha1( $this->privateKey . (string)$timestamp );
 
-			return $userApi !== $computedApiKey;
+			return $string !== $computedApiKey;
 		}
 		
 		static public function set_global_check($enabled)
 		{
-			$checkEnabled = $enabled;
+			$this->checkEnabled = $enabled;
 		}
 	};
 ?>

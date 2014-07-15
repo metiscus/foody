@@ -1,5 +1,9 @@
 RewriteEngine On
+
+RewriteRule ^(wiki)($|/) - [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php/$1 [L]
 
 Options -Indexes

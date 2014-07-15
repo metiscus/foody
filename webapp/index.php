@@ -12,56 +12,63 @@
         )
     );
     
-	/* telemetry functions */
-    $app->post('/telemetry',
-			function() {
-				$telemetry = new Telemetry();
-				$telemetry->handle_post();
-			});
-    
-    /* foody main api */
-    $app->get('/api/v1/categories/:key',
-			function($key) {
-				$foodyApi = new Foody($key);
-				$foodyApi->get_categories();
-			});
-	
-    $app->get('/api/v1/items/:key/',
-			function($key) {
-				$foodyApi = new Foody($key);
-				$foodyApi->get_items();
-			});
-	
-	$app->get('/api/v1/regions/:key/',
-				function($key) {
-				$foodyApi = new Foody($key);
-				$foodyApi->get_regions();
-			});
-	
-	$app->get('/api/v1/items/prices/:category/:key',
-			function($category, $key) {
-				$foodyApi = new Foody($key);
-				$foodyApi->get_category_prices($category);
-			});
 
-	$app->get('/api/v1/items/prices/:region/:key',
-			function($category, $key) {
-				$foodyApi = new Foody($key);
-				$foodyApi->get_region_prices($region);
-			});
+    // Main API calls
+    $app->group('/foody', function () use ($app) {
+	
+	$app->group('/api_v1', function () use ($app) {
+	    
+	    // Telemetry api calls
+	    $app->post('/telemetry', function() {
+		$telemetry = new Telemetry();
+		$telemetry->handle_post();
+	    });
+	    
+	    // Static data calls
+	    $app->group('/static-data', function () use ($app) {
+		// categories
+		$app->get('/categories/:api/:key', function($api, $key) {
+		    $foodyApi = new Foody($key);
+		    echo $foodyApi->get_categories();
+		});
+	    
+		$app->get('/items/:api/:key',  function($api, $key) {
+		    $foodyApi = new Foody($key);
+		    echo $foodyApi->get_items();
+		});
+	    
+		$app->get('/regions/:api/:key', function($api, $key) {
+		    $foodyApi = new Foody($key);
+		    echo $foodyApi->get_regions();
+		});
+	    });
+	    
+	    // price lookups
+	    $app->get('/prices/:api/:key', function($api, $key) {
 
-	$app->get('/api/v1/items/prices/:item/:key',
-			function($item, $key) {
-				$foodyApi = new Foody($key);
-				$foodyApi->get_item_prices(item, -1);
-			});
-	
-	$app->get('/api/v1/items/prices/:item/:category/:key',
-			function($item, $category, $key) {
-				$foodyApi = new Foody($key);
-				$foodyApi->get_item_prices($item, $category);
-			});
-	
-	/* run the slim app */
-    $app->run(); 
+		$foodyApi = new Foody($key);
+		$region = $category = $item = '';
+		
+		if( isset($_GET['region']) )
+		{
+		    $region = $_GET['region']; 
+		}
+		
+		if( isset($_GET['category']) )
+		{
+		    $category = $_GET['category'];
+		}
+		
+		if( isset($_GET['item']) )
+		{
+		    $item = $_GET['item'];    
+		}
+		
+		echo $foodyApi->get_prices($region, $category, $item);
+	    });
+	});
+    });
+
+    /* run the slim app */
+    $app->run();
 ?>
