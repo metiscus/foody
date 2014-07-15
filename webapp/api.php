@@ -1,7 +1,7 @@
 <?php
 	class Api
 	{
-		static private $checkEnabled = false; // this is for debugging
+		static private $checkEnabled = true; // this is for debugging
 		private $privateKey;
 		private $timeWindow;
 		
@@ -13,16 +13,21 @@
 		public function validate_key( $string, $time )
 		{
 			// short circuit if we aren't checking	
-			if( Api::$checkEnabled === false )
+			if( Api::$checkEnabled == false )
 			{
 				return true;
 			}
-
+			
 			// check the api key
 			$timestamp       = $time - $time % $this->timeWindow;
 			$computedApiKey  = sha1( $this->privateKey . (string)$timestamp );
-
-			return $string !== $computedApiKey;
+		
+			// uncomment this to debug time issues with the server
+			//print $this->privateKey . "\n";
+			//print $timestamp . "\n";
+			//print $string . "==" . $computedApiKey . "\n";
+				
+			return $string == $computedApiKey;
 		}
 		
 		static public function set_global_check($enabled)

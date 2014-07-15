@@ -14,7 +14,7 @@
         public $foodyApiSchema  = "foody_data";
         */
         
-        static public $foodyApiCheckEnabled = false;
+        static public $foodyApiCheckEnabled = true;
         static public $foodyApiPrivate      = 'DerpS@uC3';
         static public $foodyApiWindow       = 120;
     };
