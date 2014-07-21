@@ -12,6 +12,9 @@
         )
     );
     
+	$app->get('/', function() {
+		echo file_get_contents("index.html");
+	});
 
     // Main API calls
     $app->group('/foody', function () use ($app) {

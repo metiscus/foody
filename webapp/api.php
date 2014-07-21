@@ -1,7 +1,7 @@
 <?php
 	class Api
 	{
-		static private $checkEnabled = true; // this is for debugging
+		static private $checkEnabled = false; // this is for debugging
 		private $privateKey;
 		private $timeWindow;
 		
